@@ -1,15 +1,12 @@
 pipeline {
-    agent any
-    stages  {
-        stage('Test') {
-            steps {
-                sh 'echo "Testing application"'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'echo "Deploying application"'
-            }
-        }
+  agent any
+  stages {
+    stage('Build') {
+      agent any
+      steps {
+        sh 'docker-compose up -d'
+        sh 'docker exec symfony composer install'
+      }
     }
+  }  
 }
