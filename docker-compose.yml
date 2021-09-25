@@ -21,32 +21,14 @@ services:
             dockerfile: ./docker/php/Dockerfile-php
         environment:
             APP_ENV: dev
-            DATABASE_URL: "mysql://newuser:password@mysql:3306/userManagementSys"
+            DATABASE_URL: "mysql://uomauihk1orxupv6:X0At4I9NZsMkaVFDDkem@btjn4ndufeonouldpgvz-mysql.services.clever-cloud.com:3306/btjn4ndufeonouldpgvz"
         expose:
             - 9000
         volumes:
             - ./symfony/:/var/www/html/
         networks:
-            - symfony
-        depends_on: 
-            - mysql
-    mysql:
-        container_name: mysql
-        image: mysql
-        command: --default-authentication-plugin=mysql_native_password
-        volumes:
-            - ~/db_data:/var/lib/mysql
-        environment:
-            MYSQL_ROOT_PASSWORD: password
-            MYSQL_DATABASE: userManagementSys
-            MYSQL_USER: newuser
-            MYSQL_PASSWORD: password
-        networks:
-            - symfony
-        ports:
-            - 3306:3306            
+            - symfony           
 networks:
     symfony:
 volumes:
-    db_data:
     symfony:
