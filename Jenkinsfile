@@ -8,7 +8,7 @@ pipeline {
         }
         stage(‘Build’) {
             steps {
-            sh 'docker-compose -f docker-compose.yml up -d'
+                sh 'docker-compose -f docker-compose.yml up -d'
             }
         }
         stage('Deploy') {
@@ -16,6 +16,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUsername')]) {
                     sh "docker login -u ${dockerUsername} -p ${dockerPassword}"
                 }
+                sh 'docker tag nginx:latest dackerkosaksi/nginx'
                 sh 'docker push dackerkosaksi/nginx'
             }
         }
