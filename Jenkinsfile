@@ -1,4 +1,4 @@
-def dockerRun = "docker-compose up --build; bash -l"
+def dockerRun = 'docker-compose up --build; bash -l'
 pipeline {
     agent any
     stages  {
@@ -24,7 +24,7 @@ pipeline {
         stage('Run Container on Dev Server') {
             steps {
                 sshagent(['aws-host']) {
-                    sh 'ssh -t -o StrictHostKeyChecking=no -l ec2-user@172.31.45.119 ${dockerRun}'
+                    sh "ssh -t -o StrictHostKeyChecking=no -l ec2-user@172.31.45.119 ${dockerRun}"
                 }
             }
         }
