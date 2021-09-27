@@ -23,7 +23,7 @@ pipeline {
         stage('Run Container on Dev Server') {
             steps {
                 sshagent(['aws-host']) {
-                    sh "ssh -o StrictHostKeyChecking=no -l ec2-user@172.31.45.119 'docker-compose -f docker-compose.yml up -d'"
+                    sh "ssh -o StrictHostKeyChecking=no -l ec2-user@172.31.45.119 'docker-compose up --build'"
                 }
             }
         }
