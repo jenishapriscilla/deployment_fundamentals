@@ -1,12 +1,12 @@
 pipeline {
     agent any
     stages  {
-        stage('Test') {
+        stage('checkout') {
             steps {
                git credentialsId: 'gitHub', url: 'https://github.com/jenishapriscilla/DeploymentFundamental'
             }
         }
-        stage(‘Build’) {
+        stage('Build') {
             steps {
                 sh 'docker-compose -f docker-compose.yml up -d'
             }
@@ -18,6 +18,12 @@ pipeline {
                 }
                 sh 'docker tag nginx:latest dackerkosaksi/nginx'
                 sh 'docker push dackerkosaksi/nginx'
+            }
+        }
+        stage('Run Container on Dev Server') {
+            def dockerRun = 'docker-compose -f docker-compose.yml up -d'
+            sshagent(['aws-host']) {
+                sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.45.119 ${dockerRun}"
             }
         }
     }
