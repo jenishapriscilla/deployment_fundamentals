@@ -3,10 +3,7 @@ pipeline {
     stages  {
         stage('Test') {
             steps {
-                sh '''
-                    docker --version
-                    docker compose version
-                '''
+               git credentialsId: 'gitHub', url: 'https://github.com/jenishapriscilla/DeploymentFundamental'
             }
         }
         stage('Deploy') {
