@@ -16,11 +16,6 @@ pipeline {
                 sh 'docker push dackerkosaksi/nginx'
             }
         }
-        stage('Down') {
-            steps {
-                sh 'docker-compose down'
-            }
-        }
         stage('Run Container on Dev Server') {
             steps {
                 sshagent(['aws-host']) {
