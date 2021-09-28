@@ -12,7 +12,7 @@ services:
             - 80:80
         networks:
             - symfony
-        depends_on: 
+        volumes_from: 
             - php
     php:
         container_name: php
