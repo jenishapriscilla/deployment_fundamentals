@@ -13,9 +13,9 @@ services:
         networks:
             - symfony
         volumes_from: 
-            - php
-    php:
-        container_name: php
+            - practice
+    practice:
+        container_name: practice
         build:
             context: .
             dockerfile: ./docker/php/Dockerfile-php
