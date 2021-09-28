@@ -9,7 +9,7 @@ services:
         volumes:
             - ./symfony/:/var/www/html/
         ports:
-            - 8011:80
+            - 80:80
         networks:
             - symfony
         depends_on: 
