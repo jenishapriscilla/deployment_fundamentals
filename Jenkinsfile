@@ -7,6 +7,11 @@ pipeline {
                git credentialsId: 'gitHub', url: 'https://github.com/jenishapriscilla/DeploymentFundamental'
             }
         }
+        stage('compose') {
+            steps {
+                sh 'docker-compose up --build'
+            }
+        }
         stage('Deploy') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUsername')]) {
