@@ -19,7 +19,7 @@ pipeline {
         stage('Run Container on Dev Server') {
             steps {
                 sshagent(['aws-host']) {
-                    sh "ssh -tt -o StrictHostKeyChecking=no ec2-user@ec2-18-225-11-116.us-east-2.compute.amazonaws.com 'docker run -p 8011:80 dackerkosaksi/nginx'"
+                    sh "ssh -tt -o StrictHostKeyChecking=no ec2-user@ec2-18-225-11-116.us-east-2.compute.amazonaws.com 'docker run -p 80:8011 dackerkosaksi/nginx'"
                 }
             }
         }
