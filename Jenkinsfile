@@ -7,11 +7,6 @@ pipeline {
                git credentialsId: 'gitHub', url: 'https://github.com/jenishapriscilla/DeploymentFundamental'
             }
         }
-        stage('Build') {
-            steps {
-                sh 'docker-compose -f docker-compose.yml up -d'
-            }
-        }
         stage('Deploy') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUsername')]) {
